@@ -1,0 +1,41 @@
+--- a/net/minecraft/world/entity/ai/Brain.java
++++ b/net/minecraft/world/entity/ai/Brain.java
+@@ -81,7 +_,7 @@
+ 
+                @Override
+                public <T> DataResult<Brain<E>> decode(DynamicOps<T> dynamicOps, MapLike<T> mapLike) {
+-                  MutableObject<DataResult<Builder<Brain.MemoryValue<?>>>> mutableObject = new MutableObject<>(DataResult.success(ImmutableList.builder()));
++                  MutableObject<DataResult<Builder<Brain.MemoryValue<?>>>> mutableObject1 = new MutableObject<>(DataResult.success(ImmutableList.builder()));
+                   mapLike.entries()
+                      .forEach(
+                         pair -> {
+@@ -89,10 +_,10 @@
+                            DataResult<? extends Brain.MemoryValue<?>> dataResult2 = dataResult.flatMap(
+                               memoryModuleType -> this.captureRead((MemoryModuleType<T>)memoryModuleType, dynamicOps, (T)pair.getSecond())
+                            );
+-                           mutableObject.setValue(mutableObject.getValue().apply2(Builder::add, dataResult2));
++                           mutableObject1.setValue(mutableObject1.getValue().apply2(Builder::add, dataResult2));
+                         }
+                      );
+-                  ImmutableList<Brain.MemoryValue<?>> immutableList = mutableObject.getValue()
++                  ImmutableList<Brain.MemoryValue<?>> immutableList = mutableObject1.getValue()
+                      .resultOrPartial(Brain.LOGGER::error)
+                      .map(Builder::build)
+                      .orElseGet(ImmutableList::of);
+@@ -192,14 +_,14 @@
+       if (optional == null) {
+          throw new IllegalStateException("Unregistered memory fetched: " + memoryModuleType);
+       } else {
+-         return optional.map(ExpirableValue::getValue);
++         return (Optional<U>) optional.map(ExpirableValue::getValue);
+       }
+    }
+ 
+    @Nullable
+    public <U> Optional<U> getMemoryInternal(MemoryModuleType<U> memoryModuleType) {
+       Optional<? extends ExpirableValue<?>> optional = this.memories.get(memoryModuleType);
+-      return optional == null ? null : optional.map(ExpirableValue::getValue);
++      return optional == null ? null : (Optional<U>) optional.map(ExpirableValue::getValue);
+    }
+ 
+    public <U> long getTimeUntilExpiry(MemoryModuleType<U> memoryModuleType) {

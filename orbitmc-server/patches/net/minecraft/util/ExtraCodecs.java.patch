@@ -1,0 +1,37 @@
+--- a/net/minecraft/util/ExtraCodecs.java
++++ b/net/minecraft/util/ExtraCodecs.java
+@@ -220,7 +_,7 @@
+          P object2 = (P)listx.get(1);
+          return biFunction.apply(object, object2);
+       }), object -> ImmutableList.of(function.apply((I)object), function2.apply((I)object)));
+-      Codec<I> codec3 = RecordCodecBuilder.<Pair>create(
++      Codec<I> codec3 = RecordCodecBuilder.<Pair<P, P>>create(
+             instance -> instance.group(codec.fieldOf(string).forGetter(Pair::getFirst), codec.fieldOf(string2).forGetter(Pair::getSecond))
+                .apply(instance, Pair::of)
+          )
+@@ -235,13 +_,13 @@
+       });
+    }
+ 
+-   public static <A> ResultFunction<A> orElsePartial(A object) {
++   public static <A> ResultFunction<A> orElsePartial(A value) {
+       return new ResultFunction<A>() {
+          @Override
+-         public <T> DataResult<Pair<A, T>> apply(DynamicOps<T> dynamicOps, T object, DataResult<Pair<A, T>> dataResult) {
++         public <T> DataResult<Pair<A, T>> apply(DynamicOps<T> dynamicOps, T input, DataResult<Pair<A, T>> dataResult) {
+             MutableObject<String> mutableObject = new MutableObject<>();
+             Optional<Pair<A, T>> optional = dataResult.resultOrPartial(mutableObject::setValue);
+-            return optional.isPresent() ? dataResult : DataResult.error(() -> "(" + mutableObject.getValue() + " -> using default)", Pair.of(object, object));
++            return optional.isPresent() ? dataResult : DataResult.error(() -> "(" + mutableObject.getValue() + " -> using default)", Pair.of(value, input));
+          }
+ 
+          @Override
+@@ -251,7 +_,7 @@
+ 
+          @Override
+          public String toString() {
+-            return "OrElsePartial[" + object + "]";
++            return "OrElsePartial[" + value + "]";
+          }
+       };
+    }

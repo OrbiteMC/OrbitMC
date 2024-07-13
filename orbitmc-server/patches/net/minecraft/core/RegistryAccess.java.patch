@@ -1,0 +1,13 @@
+--- a/net/minecraft/core/RegistryAccess.java
++++ b/net/minecraft/core/RegistryAccess.java
+@@ -38,8 +_,8 @@
+       return new RegistryAccess.Frozen() {
+          @Override
+          public <T> Optional<Registry<T>> registry(ResourceKey<? extends Registry<? extends T>> resourceKey) {
+-            Registry<Registry<T>> registry = (Registry<Registry<T>>)registry;
+-            return registry.getOptional((ResourceKey<Registry<T>>)resourceKey);
++            Registry<Registry<T>> registry1 = (Registry<Registry<T>>)registry;
++            return registry1.getOptional((ResourceKey<Registry<T>>)resourceKey);
+          }
+ 
+          @Override

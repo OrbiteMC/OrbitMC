@@ -1,0 +1,11 @@
+--- a/net/minecraft/server/commands/ForceLoadCommand.java
++++ b/net/minecraft/server/commands/ForceLoadCommand.java
+@@ -198,7 +_,7 @@
+                   commandSourceStack.sendSuccess(
+                      () -> Component.translatable(
+                         "commands.forceload." + (bl ? "added" : "removed") + ".multiple",
+-                        t,
++                        tx,
+                         Component.translationArg(resourceKey.location()),
+                         Component.translationArg(chunkPos3),
+                         Component.translationArg(chunkPos4)

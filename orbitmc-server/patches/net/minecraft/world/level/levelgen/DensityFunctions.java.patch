@@ -1,0 +1,16 @@
+--- a/net/minecraft/world/level/levelgen/DensityFunctions.java
++++ b/net/minecraft/world/level/levelgen/DensityFunctions.java
+@@ -296,11 +_,11 @@
+                }
+                break;
+             case MAX:
+-               double e = this.argument2.maxValue();
++               double maxValue = this.argument2.maxValue();
+ 
+                for (int k = 0; k < ds.length; k++) {
+                   double f = ds[k];
+-                  ds[k] = f > e ? f : Math.max(f, this.argument2.compute(contextProvider.forIndex(k)));
++                  ds[k] = f > maxValue ? f : Math.max(f, this.argument2.compute(contextProvider.forIndex(k)));
+                }
+          }
+       }

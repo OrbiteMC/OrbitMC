@@ -1,0 +1,20 @@
+--- a/net/minecraft/nbt/NbtUtils.java
++++ b/net/minecraft/nbt/NbtUtils.java
+@@ -310,7 +_,7 @@
+                indent(i + 1, stringBuilder);
+             }
+ 
+-            int jx = list.stream().mapToInt(String::length).max().orElse(0);
++            jx = list.stream().mapToInt(String::length).max().orElse(0);
+             String stringx = Strings.repeat(" ", jx);
+ 
+             for (int m = 0; m < list.size(); m++) {
+@@ -332,7 +_,7 @@
+          case 11:
+             IntArrayTag intArrayTag = (IntArrayTag)tag;
+             int[] is = intArrayTag.getAsIntArray();
+-            int jx = 0;
++            jx = 0;
+ 
+             for (int n : is) {
+                jx = Math.max(jx, String.format(Locale.ROOT, "%X", n).length());

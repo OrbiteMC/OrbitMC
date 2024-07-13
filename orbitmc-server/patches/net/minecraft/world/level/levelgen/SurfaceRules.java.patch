@@ -1,0 +1,92 @@
+--- a/net/minecraft/world/level/levelgen/SurfaceRules.java
++++ b/net/minecraft/world/level/levelgen/SurfaceRules.java
+@@ -174,10 +_,10 @@
+          return CODEC;
+       }
+ 
+-      public SurfaceRules.Condition apply(SurfaceRules.Context context) {
++      public SurfaceRules.Condition apply(SurfaceRules.Context context1) {
+          class BiomeCondition extends SurfaceRules.LazyYCondition {
+             BiomeCondition() {
+-               super(context);
++               super(context1);
+             }
+ 
+             @Override
+@@ -511,12 +_,12 @@
+          return CODEC;
+       }
+ 
+-      public SurfaceRules.Condition apply(SurfaceRules.Context context) {
+-         final NormalNoise normalNoise = context.randomState.getOrCreateNoise(this.noise);
++      public SurfaceRules.Condition apply(SurfaceRules.Context context1) {
++         final NormalNoise normalNoise = context1.randomState.getOrCreateNoise(this.noise);
+ 
+          class NoiseThresholdCondition extends SurfaceRules.LazyXZCondition {
+             NoiseThresholdCondition() {
+-               super(context);
++               super(context1);
+             }
+ 
+             @Override
+@@ -647,12 +_,12 @@
+          return CODEC;
+       }
+ 
+-      public SurfaceRules.Condition apply(SurfaceRules.Context context) {
++      public SurfaceRules.Condition apply(SurfaceRules.Context context1) {
+          final boolean bl = this.surfaceType == CaveSurface.CEILING;
+ 
+          class StoneDepthCondition extends SurfaceRules.LazyYCondition {
+             StoneDepthCondition() {
+-               super(context);
++               super(context1);
+             }
+ 
+             @Override
+@@ -737,14 +_,14 @@
+          return CODEC;
+       }
+ 
+-      public SurfaceRules.Condition apply(SurfaceRules.Context context) {
+-         final int i = this.trueAtAndBelow().resolveY(context.context);
+-         final int j = this.falseAtAndAbove().resolveY(context.context);
+-         final PositionalRandomFactory positionalRandomFactory = context.randomState.getOrCreateRandomFactory(this.randomName());
++      public SurfaceRules.Condition apply(SurfaceRules.Context context1) {
++         final int i = this.trueAtAndBelow().resolveY(context1.context);
++         final int j = this.falseAtAndAbove().resolveY(context1.context);
++         final PositionalRandomFactory positionalRandomFactory = context1.randomState.getOrCreateRandomFactory(this.randomName());
+ 
+          class VerticalGradientCondition extends SurfaceRules.LazyYCondition {
+             VerticalGradientCondition() {
+-               super(context);
++               super(context1);
+             }
+ 
+             @Override
+@@ -783,10 +_,10 @@
+          return CODEC;
+       }
+ 
+-      public SurfaceRules.Condition apply(SurfaceRules.Context context) {
++      public SurfaceRules.Condition apply(SurfaceRules.Context context1) {
+          class WaterCondition extends SurfaceRules.LazyYCondition {
+             WaterCondition() {
+-               super(context);
++               super(context1);
+             }
+ 
+             @Override
+@@ -820,10 +_,10 @@
+          return CODEC;
+       }
+ 
+-      public SurfaceRules.Condition apply(SurfaceRules.Context context) {
++      public SurfaceRules.Condition apply(SurfaceRules.Context context1) {
+          class YCondition extends SurfaceRules.LazyYCondition {
+             YCondition() {
+-               super(context);
++               super(context1);
+             }
+ 
+             @Override

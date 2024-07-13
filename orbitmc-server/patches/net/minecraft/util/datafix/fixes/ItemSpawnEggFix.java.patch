@@ -1,0 +1,12 @@
+--- a/net/minecraft/util/datafix/fixes/ItemSpawnEggFix.java
++++ b/net/minecraft/util/datafix/fixes/ItemSpawnEggFix.java
+@@ -113,7 +_,8 @@
+                Typed<?> typed3 = typed.getOrCreateTyped(opticFinder3);
+                Typed<?> typed4 = typed3.getOrCreateTyped(opticFinder4);
+                Typed<?> typed5 = typed4.getOrCreateTyped(opticFinder5);
+-               Typed<?> typed6 = Util.writeAndReadTypedOrThrow(typed5, type2, dynamic2 -> dynamic2.set("id", dynamic.createString(string)));
++               final Dynamic<?> fdyn = dynamic;
++               Typed<?> typed6 = Util.writeAndReadTypedOrThrow(typed5, type2, dynamic2 -> dynamic2.set("id", fdyn.createString(string)));
+                typed2 = typed.set(opticFinder3, typed3.set(opticFinder4, typed4.set(opticFinder5, typed6)));
+             }
+ 

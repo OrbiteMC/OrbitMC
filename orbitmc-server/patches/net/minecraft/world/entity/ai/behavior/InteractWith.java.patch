@@ -1,0 +1,11 @@
+--- a/net/minecraft/world/entity/ai/behavior/InteractWith.java
++++ b/net/minecraft/world/entity/ai/behavior/InteractWith.java
+@@ -37,7 +_,7 @@
+                         livingEntity2 -> livingEntity2.distanceToSqr(livingEntity) <= k && predicate3.test(livingEntity2)
+                      );
+                      optional.ifPresent(livingEntityx -> {
+-                        memoryAccessor.set(livingEntityx);
++                        memoryAccessor.set((T)livingEntityx);
+                         memoryAccessor2.set(new EntityTracker(livingEntityx, true));
+                         memoryAccessor3.set(new WalkTarget(new EntityTracker(livingEntityx, false), f, j));
+                      });

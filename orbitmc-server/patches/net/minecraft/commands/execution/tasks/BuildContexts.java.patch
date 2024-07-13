@@ -1,0 +1,25 @@
+--- a/net/minecraft/commands/execution/tasks/BuildContexts.java
++++ b/net/minecraft/commands/execution/tasks/BuildContexts.java
+@@ -52,7 +_,7 @@
+                }
+ 
+                RedirectModifier<T> redirectModifier = commandContext.getRedirectModifier();
+-               if (redirectModifier instanceof CustomModifierExecutor<T> customModifierExecutor) {
++               if (redirectModifier instanceof CustomModifierExecutor customModifierExecutor) {
+                   customModifierExecutor.apply(executionCommandSource, list2, contextChain, chainModifiers2, ExecutionControl.create(executionContext, frame));
+                   return;
+                }
+@@ -89,11 +_,11 @@
+ 
+       if (list2.isEmpty()) {
+          if (chainModifiers2.isReturn()) {
+-            executionContext.queueNext(new CommandQueueEntry<>(frame, FallthroughTask.instance()));
++            executionContext.queueNext(new CommandQueueEntry(frame, FallthroughTask.instance()));
+          }
+       } else {
+          CommandContext<T> commandContext2 = contextChain.getTopContext();
+-         if (commandContext2.getCommand() instanceof CustomCommandExecutor<T> customCommandExecutor) {
++         if (commandContext2.getCommand() instanceof CustomCommandExecutor customCommandExecutor) {
+             ExecutionControl<T> executionControl = ExecutionControl.create(executionContext, frame);
+ 
+             for (T executionCommandSource3 : list2) {

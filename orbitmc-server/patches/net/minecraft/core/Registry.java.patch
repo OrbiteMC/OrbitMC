@@ -1,0 +1,11 @@
+--- a/net/minecraft/core/Registry.java
++++ b/net/minecraft/core/Registry.java
+@@ -152,7 +_,7 @@
+    Optional<HolderSet.Named<T>> getTag(TagKey<T> tagKey);
+ 
+    default Iterable<Holder<T>> getTagOrEmpty(TagKey<T> tagKey) {
+-      return DataFixUtils.orElse(this.getTag(tagKey), List.<T>of());
++      return DataFixUtils.orElse(this.getTag(tagKey), List.of());
+    }
+ 
+    default Optional<Holder<T>> getRandomElementOf(TagKey<T> tagKey, RandomSource randomSource) {

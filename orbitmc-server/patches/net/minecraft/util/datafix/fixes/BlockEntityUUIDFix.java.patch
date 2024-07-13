@@ -1,0 +1,11 @@
+--- a/net/minecraft/util/datafix/fixes/BlockEntityUUIDFix.java
++++ b/net/minecraft/util/datafix/fixes/BlockEntityUUIDFix.java
+@@ -23,7 +_,7 @@
+          .map(dynamicx -> replaceUUIDString(dynamicx, "Id", "Id").orElse(dynamicx))
+          .map(dynamic2 -> dynamic.remove("Owner").set("SkullOwner", (Dynamic<?>)dynamic2))
+          .result()
+-         .orElse(dynamic);
++         .orElse((Dynamic)dynamic);
+    }
+ 
+    private Dynamic<?> updateConduit(Dynamic<?> dynamic) {

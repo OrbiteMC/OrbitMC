@@ -1,0 +1,56 @@
+--- a/net/minecraft/world/entity/Leashable.java
++++ b/net/minecraft/world/entity/Leashable.java
+@@ -40,7 +_,7 @@
+ 
+    default void setDelayedLeashHolderId(int i) {
+       this.setLeashData(new Leashable.LeashData(i));
+-      dropLeash((Entity)this, false, false);
++      dropLeash((Entity & Leashable)this, false, false);
+    }
+ 
+    @Nullable
+@@ -49,7 +_,7 @@
+          return new Leashable.LeashData(Either.left(compoundTag.getCompound("leash").getUUID("UUID")));
+       } else {
+          if (compoundTag.contains("leash", 11)) {
+-            Either<UUID, BlockPos> either = NbtUtils.readBlockPos(compoundTag, "leash").map(Either::right).orElse(null);
++            Either<UUID, BlockPos> either = NbtUtils.readBlockPos(compoundTag, "leash").<Either<UUID, BlockPos>>map(Either::right).orElse(null);
+             if (either != null) {
+                return new Leashable.LeashData(either);
+             }
+@@ -101,7 +_,7 @@
+    }
+ 
+    default void dropLeash(boolean bl, boolean bl2) {
+-      dropLeash((Entity)this, bl, bl2);
++      dropLeash((Entity & Leashable)this, bl, bl2);
+    }
+ 
+    private static <E extends Entity & Leashable> void dropLeash(E entity, boolean bl, boolean bl2) {
+@@ -160,7 +_,7 @@
+    }
+ 
+    default void elasticRangeLeashBehaviour(Entity entity, float f) {
+-      legacyElasticRangeLeashBehaviour((Entity)this, entity, f);
++      legacyElasticRangeLeashBehaviour((Entity & Leashable)this, entity, f);
+    }
+ 
+    private static <E extends Entity & Leashable> void legacyElasticRangeLeashBehaviour(E entity, Entity entity2, float f) {
+@@ -171,7 +_,7 @@
+    }
+ 
+    default void setLeashedTo(Entity entity, boolean bl) {
+-      setLeashedTo((Entity)this, entity, bl);
++      setLeashedTo((Entity & Leashable)this, entity, bl);
+    }
+ 
+    private static <E extends Entity & Leashable> void setLeashedTo(E entity, Entity entity2, boolean bl) {
+@@ -194,7 +_,7 @@
+ 
+    @Nullable
+    default Entity getLeashHolder() {
+-      return getLeashHolder((Entity)this);
++      return getLeashHolder((Entity & Leashable)this);
+    }
+ 
+    @Nullable

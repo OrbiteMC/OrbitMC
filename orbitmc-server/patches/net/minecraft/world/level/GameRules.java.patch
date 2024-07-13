@@ -1,0 +1,13 @@
+--- a/net/minecraft/world/level/GameRules.java
++++ b/net/minecraft/world/level/GameRules.java
+@@ -252,8 +_,8 @@
+    private static <T extends GameRules.Value<T>> void callVisitorCap(
+       GameRules.GameRuleTypeVisitor gameRuleTypeVisitor, GameRules.Key<?> key, GameRules.Type<?> type
+    ) {
+-      gameRuleTypeVisitor.visit(key, type);
+-      type.callVisitor(gameRuleTypeVisitor, key);
++      gameRuleTypeVisitor.visit((GameRules.Key<T>)key, (GameRules.Type<T>)type);
++      ((GameRules.Type<T>)type).callVisitor(gameRuleTypeVisitor, (GameRules.Key<T>)key);
+    }
+ 
+    public void assignFrom(GameRules gameRules, @Nullable MinecraftServer minecraftServer) {

@@ -1,0 +1,47 @@
+--- a/net/minecraft/network/codec/ByteBufCodecs.java
++++ b/net/minecraft/network/codec/ByteBufCodecs.java
+@@ -349,10 +_,10 @@
+       return collection(intFunction, streamCodec, Integer.MAX_VALUE);
+    }
+ 
+-   static <B extends ByteBuf, V, C extends Collection<V>> StreamCodec<B, C> collection(IntFunction<C> intFunction, StreamCodec<? super B, V> streamCodec, int i) {
++   static <B extends ByteBuf, V, C extends Collection<V>> StreamCodec<B, C> collection(IntFunction<C> intFunction, StreamCodec<? super B, V> streamCodec, int maxSize) {
+       return new StreamCodec<B, C>() {
+          public C decode(B byteBuf) {
+-            int i = ByteBufCodecs.readCount(byteBuf, i);
++            int i = ByteBufCodecs.readCount(byteBuf, maxSize);
+             C collection = intFunction.apply(Math.min(i, 65536));
+ 
+             for (int j = 0; j < i; j++) {
+@@ -363,7 +_,7 @@
+          }
+ 
+          public void encode(B byteBuf, C collection) {
+-            ByteBufCodecs.writeCount(byteBuf, collection.size(), i);
++            ByteBufCodecs.writeCount(byteBuf, collection.size(), maxSize);
+ 
+             for (V object : collection) {
+                streamCodec.encode(byteBuf, object);
+@@ -391,11 +_,11 @@
+    }
+ 
+    static <B extends ByteBuf, K, V, M extends Map<K, V>> StreamCodec<B, M> map(
+-      IntFunction<? extends M> intFunction, StreamCodec<? super B, K> streamCodec, StreamCodec<? super B, V> streamCodec2, int i
++      IntFunction<? extends M> intFunction, StreamCodec<? super B, K> streamCodec, StreamCodec<? super B, V> streamCodec2, int maxSize
+    ) {
+       return new StreamCodec<B, M>() {
+          public void encode(B byteBuf, M map) {
+-            ByteBufCodecs.writeCount(byteBuf, map.size(), i);
++            ByteBufCodecs.writeCount(byteBuf, map.size(), maxSize);
+             map.forEach((object, object2) -> {
+                streamCodec.encode(byteBuf, (K)object);
+                streamCodec2.encode(byteBuf, (V)object2);
+@@ -403,7 +_,7 @@
+          }
+ 
+          public M decode(B byteBuf) {
+-            int i = ByteBufCodecs.readCount(byteBuf, i);
++            int i = ByteBufCodecs.readCount(byteBuf, maxSize);
+             M map = (M)intFunction.apply(Math.min(i, 65536));
+ 
+             for (int j = 0; j < i; j++) {

@@ -1,0 +1,26 @@
+--- a/net/minecraft/network/codec/StreamCodec.java
++++ b/net/minecraft/network/codec/StreamCodec.java
+@@ -43,12 +_,12 @@
+    static <B, V> StreamCodec<B, V> unit(V object) {
+       return new StreamCodec<B, V>() {
+          @Override
+-         public V decode(B object) {
++         public V decode(B buffer) {
+             return object;
+          }
+ 
+          @Override
+-         public void encode(B object, V object2) {
++         public void encode(B buffer, V object2) {
+             if (!object2.equals(object)) {
+                throw new IllegalStateException("Can't encode '" + object2 + "', expected '" + object + "'");
+             }
+@@ -296,7 +_,7 @@
+    }
+ 
+    default <S extends B> StreamCodec<S, V> cast() {
+-      return this;
++      return (StreamCodec<S, V>) this;
+    }
+ 
+    @FunctionalInterface

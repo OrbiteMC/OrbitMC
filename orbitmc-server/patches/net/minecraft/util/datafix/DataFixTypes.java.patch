@@ -1,0 +1,20 @@
+--- a/net/minecraft/util/datafix/DataFixTypes.java
++++ b/net/minecraft/util/datafix/DataFixTypes.java
+@@ -45,7 +_,7 @@
+       return SharedConstants.getCurrentVersion().getDataVersion().getVersion();
+    }
+ 
+-   public <A> Codec<A> wrapCodec(Codec<A> codec, DataFixer dataFixer, int i) {
++   public <A> Codec<A> wrapCodec(Codec<A> codec, DataFixer dataFixer, int dataVersion) {
+       return new Codec<A>() {
+          @Override
+          public <T> DataResult<T> encode(A object, DynamicOps<T> dynamicOps, T object2) {
+@@ -57,7 +_,7 @@
+ 
+          @Override
+          public <T> DataResult<Pair<A, T>> decode(DynamicOps<T> dynamicOps, T object) {
+-            int i = dynamicOps.get(object, "DataVersion").flatMap(dynamicOps::getNumberValue).map(Number::intValue).result().orElse(i);
++            int i = dynamicOps.get(object, "DataVersion").flatMap(dynamicOps::getNumberValue).map(Number::intValue).result().orElse(dataVersion);
+             Dynamic<T> dynamic = new Dynamic<>(dynamicOps, dynamicOps.remove(object, "DataVersion"));
+             Dynamic<T> dynamic2 = DataFixTypes.this.updateToCurrentVersion(dataFixer, dynamic, i);
+             return codec.decode(dynamic2);

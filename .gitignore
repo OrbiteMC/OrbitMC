@@ -12,3 +12,13 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+
+.idea/
+
+orbitmc-server/build/
+
+orbitmc-server/satellite/
+
+orbitmc-server/src/main/java/com/mojang/
+
+orbitmc-server/src/main/java/net/minecraft/

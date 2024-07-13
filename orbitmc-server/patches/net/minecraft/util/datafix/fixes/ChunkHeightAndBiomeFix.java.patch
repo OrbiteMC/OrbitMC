@@ -1,0 +1,12 @@
+--- a/net/minecraft/util/datafix/fixes/ChunkHeightAndBiomeFix.java
++++ b/net/minecraft/util/datafix/fixes/ChunkHeightAndBiomeFix.java
+@@ -218,7 +_,8 @@
+       } else if (is != null && is.length == 1024) {
+          for (int j = 0; j < 16; j++) {
+             int k = j - i;
+-            dynamics[k] = makeBiomeContainer(dynamic, jx -> getOldBiome(is, j * 64 + jx));
++            final int fj = j;
++            dynamics[k] = makeBiomeContainer(dynamic, jx -> getOldBiome(is, fj * 64 + jx));
+          }
+ 
+          if (bl) {
