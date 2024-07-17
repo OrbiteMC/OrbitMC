@@ -4,4 +4,10 @@ plugins {
 
 subprojects {
     apply(plugin = "java")
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
 }
