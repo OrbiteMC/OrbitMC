@@ -9,6 +9,7 @@ dependencyResolutionManagement {
         repositories {
             mavenLocal()
             mavenCentral()
+            gradlePluginPortal()
             maven("https://maven.fabricmc.net")
         }
     }
@@ -23,4 +24,3 @@ rootProject.projectDir.listFiles()!!.filter { it.isDirectory }.forEach { file ->
         include(":${file.name}")
     }
 }
-

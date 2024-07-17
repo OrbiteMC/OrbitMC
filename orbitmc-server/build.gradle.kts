@@ -1,10 +1,7 @@
+import kotlin.math.log
+
 plugins {
     id("io.github.orbitemc.satellite") version "1.0.0-SNAPSHOT"
-}
-
-tasks.compileJava {
-    options.isDeprecation = false
-    options.isWarnings = false
 }
 
 repositories {
@@ -19,4 +16,10 @@ dependencies {
 
 satellite {
     minecraftVersion = "1.21"
+}
+
+tasks.assembleBootstrap {
+    manifest {
+        attributes["Main-Class"] = "io.github.orbitemc.bootstrap.Bootstrap"
+    }
 }
