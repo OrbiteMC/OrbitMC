@@ -22,3 +22,5 @@ orbitmc-server/satellite/
 orbitmc-server/src/main/java/com/mojang/
 
 orbitmc-server/src/main/java/net/minecraft/
+
+orbitmc-api/build/

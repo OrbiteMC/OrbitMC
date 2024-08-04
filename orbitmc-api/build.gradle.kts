@@ -2,6 +2,7 @@ import kotlin.math.log
 
 plugins {
     `java-library`
+    `maven-publish`
 }
 
 val minecraftVersion = "1.21"
@@ -37,4 +38,14 @@ dependencies {
         }
         return@filter true
     }.forEach { compileOnly(it) }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            this.groupId = "io.github.orbitemc"
+            this.version = rootProject.version.toString()
+            from(components["java"])
+        }
+    }
 }
